@@ -1,3 +1,4 @@
+import argparse
 import os
 
 from dotenv import load_dotenv
@@ -11,9 +12,13 @@ if api_key is None:
 
 client = genai.Client(api_key=api_key)
 
+parser = argparse.ArgumentParser(description="Generate content using Gemini API.")
+parser.add_argument("user_prompt", type=str, help="The prompt to generate content for.")
+args = parser.parse_args()
+
 response = client.models.generate_content(
     model="gemini-2.5-flash",
-    contents="Why is Boot.dev such a great place to learn backend development? Use one paragraph maximum.",
+    contents=args.user_prompt,
 )
 
 if response.usage_metadata:
