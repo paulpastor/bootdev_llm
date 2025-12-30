@@ -16,7 +16,7 @@ def get_file_content(working_directory, file_path):
         if not os.path.isfile(target_file):
             return f'Error: File not found or is not a regular file: "{file_path}"'
 
-        with open(target_file, "r", encoding="utf-8") as f:
+        with open(target_file, "r") as f:
             content = f.read(MAX_CHARS)
             if f.read(1):
                 content += (
